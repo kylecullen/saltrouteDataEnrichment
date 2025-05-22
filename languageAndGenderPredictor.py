@@ -56,7 +56,11 @@ def get_person_prediction(first_name: str, last_name: str):
                         },
                         "gender": {
                             "type": "string",
-                            "description": "Most likely gender of the person"
+                            "description": "Most likely gender of the person",
+                            "enum": [
+                                "FEMALE",
+                                "MALE"
+                            ]
                         },
                         "confidence": {
                             "type": "number",
