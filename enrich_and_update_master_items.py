@@ -33,15 +33,15 @@ except Exception as e:
     async_client = None
 
 # --- Constants ---
-DB_BATCH_SIZE = 10000      # Number of records to fetch and process in one DB batch
+DB_BATCH_SIZE = 2000      # Number of records to fetch and process in one DB batch
 
 # V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V
 # --- NEW VARIABLE: SET THE TOTAL NUMBER OF RECORDS TO PROCESS ---
 # Set to a number (e.g., 50000) to limit total processing, or None to process all eligible records.
-MAX_TOTAL_RECORDS_TO_PROCESS = 10000 # Example: 50000 or None
+MAX_TOTAL_RECORDS_TO_PROCESS = None # Example: 50000 or None
 # A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A
 
-API_CALL_CONCURRENCY = 20
+API_CALL_CONCURRENCY = 150
 RETRY_ATTEMPTS = 3
 RETRY_DELAY_SECONDS = 5
 INTER_BATCH_DELAY_SECONDS = 2
@@ -284,6 +284,10 @@ async def process_master_items_in_batches_async():
                 WHERE
                     (g.MasterItemId IS NULL OR l.MasterItemId IS NULL) 
                     AND mi.Id > ? 
+                    AND mi.FullName IS NOT NULL
+                    AND LTRIM(RTRIM(mi.FullName)) <> ''
+                    AND mi.Surname IS NOT NULL
+                    AND LTRIM(RTRIM(mi.Surname)) <> ''
                 ORDER BY
                     mi.Id ASC;
             """
