@@ -33,7 +33,7 @@ except Exception as e:
     async_client = None
 
 # --- Constants ---
-DB_BATCH_SIZE = 2000      # Number of records to fetch and process in one DB batch
+DB_BATCH_SIZE = 10000      # Number of records to fetch and process in one DB batch
 
 # V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V
 # --- NEW VARIABLE: SET THE TOTAL NUMBER OF RECORDS TO PROCESS ---
@@ -41,7 +41,7 @@ DB_BATCH_SIZE = 2000      # Number of records to fetch and process in one DB bat
 MAX_TOTAL_RECORDS_TO_PROCESS = None # Example: 50000 or None
 # A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A
 
-API_CALL_CONCURRENCY = 150
+API_CALL_CONCURRENCY = 2000
 RETRY_ATTEMPTS = 3
 RETRY_DELAY_SECONDS = 5
 INTER_BATCH_DELAY_SECONDS = 2

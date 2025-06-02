@@ -70,7 +70,7 @@ def fetch_first_20_people(conn):
         # SQL query to select Id, FullName, Surname, Gender (from dbo.Genders), and Language (from dbo.Languages)
         # using LEFT JOINs to include gender and language descriptions.
         query = """
-        SELECT TOP 1000
+        SELECT TOP 1001
             mi.Id,
             mi.FullName,
             mi.Surname,
